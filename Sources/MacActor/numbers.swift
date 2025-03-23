@@ -64,6 +64,8 @@ public struct NumbersActor {
             application: application,
             components: [.open, .activate, .numbersMap, .endTell]
         )
+        let built = script.buildScript()
+        print(built)
         return script.run(silent: false)
     }
 
