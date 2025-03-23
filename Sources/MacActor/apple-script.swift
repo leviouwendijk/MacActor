@@ -89,7 +89,6 @@ public enum GenericAppleScriptComponent: String {
             set docFile to POSIX file "\(file)" as alias
             tell application "\(app.rawValue)"
                 open docFile
-            end tell
             """
         case .close:
             return """
