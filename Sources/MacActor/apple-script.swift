@@ -58,6 +58,8 @@ public enum TargetApplication: String {
 }
 
 public enum GenericAppleScriptComponent: String {
+    case tell
+    case endTell
     case activate
     case open
     case close
@@ -69,11 +71,17 @@ public enum GenericAppleScriptComponent: String {
     
     public func resolve(for app: TargetApplication, using variables: AppleScriptVariables = .init()) -> String {
         switch self {
-        case .activate:
+        case .tell:
             return """
             tell application "\(app.rawValue)"
-                activate
+            """
+        case .endTell:
+            return """
             end tell
+            """
+        case .activate:
+            return """
+                activate
             """
         case .open:
             guard let file = variables.filePath else { return "// Missing filePath" }
@@ -81,7 +89,6 @@ public enum GenericAppleScriptComponent: String {
             set docFile to POSIX file "\(file)" as alias
             tell application "\(app.rawValue)"
                 open docFile
-            end tell
             """
         case .close:
             return """
