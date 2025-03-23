@@ -130,15 +130,16 @@ public enum GenericAppleScriptComponent: String {
                     repeat with sheetIndex from 1 to count of sheets
                         set currentSheet to sheet sheetIndex
                         set sheetName to name of currentSheet
-                        set result to result & "Sheet " & sheetIndex & ": " & sheetName & \"\\n\"
 
+                        set tableList to ""
                         repeat with tableIndex from 1 to count of tables of currentSheet
                             set currentTable to table tableIndex of currentSheet
                             set tableName to name of currentTable
-                            set result to result & "  Table " & tableIndex & ": " & tableName & \"\\n\"
+                            set tableList to tableList & "Table " & tableIndex & ": " & tableName & "\n"
                         end repeat
+
+                        display dialog "Sheet " & sheetIndex & ": " & sheetName & "\n" & tableList
                     end repeat
-                    display dialog result
                 end tell
             """
         case .numbersCell:
