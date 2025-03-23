@@ -59,13 +59,15 @@ public struct NumbersActor {
         return script.run(silent: false)
     }
 
-    public func mapSheetsAndTables() -> AppleScriptResult {
+    public func mapSheetsAndTables(_ variables: AppleScriptVariables) -> AppleScriptResult {
         let script = ConstructedAppleScript(
             application: application,
-            components: [.open, .activate, .numbersMap, .endTell]
+            components: [.open, .activate, .numbersMap],
+            variables: variables
         )
+
         let built = script.buildScript()
-        print(built)
+        print("Script:\n\(built)")
         return script.run(silent: false)
     }
 
