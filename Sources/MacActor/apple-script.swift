@@ -125,21 +125,21 @@ public enum GenericAppleScriptComponent: String {
             """
         case .numbersMap:
             return """
-            tell document 1
-                set result to "Sheet and Table Overview:\n"
-                repeat with sheetIndex from 1 to count of sheets
-                    set currentSheet to sheet sheetIndex
-                    set sheetName to name of currentSheet
-                    set result to result & "Sheet " & sheetIndex & ": " & sheetName & "\n"
+                tell document 1
+                    set result to "Sheet and Table Overview:\n"
+                    repeat with sheetIndex from 1 to count of sheets
+                        set currentSheet to sheet sheetIndex
+                        set sheetName to name of currentSheet
+                        set result to result & "Sheet " & sheetIndex & ": " & sheetName & "\n"
 
-                    repeat with tableIndex from 1 to count of tables of currentSheet
-                        set currentTable to table tableIndex of currentSheet
-                        set tableName to name of currentTable
-                        set result to result & "  Table " & tableIndex & ": " & tableName & "\n"
+                        repeat with tableIndex from 1 to count of tables of currentSheet
+                            set currentTable to table tableIndex of currentSheet
+                            set tableName to name of currentTable
+                            set result to result & "  Table " & tableIndex & ": " & tableName & "\n"
+                        end repeat
                     end repeat
-                end repeat
-                display dialog result
-            end tell
+                    display dialog result
+                end tell
             """
         case .numbersCell:
             guard

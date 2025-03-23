@@ -62,7 +62,7 @@ public struct NumbersActor {
     public func mapSheetsAndTables(_ variables: AppleScriptVariables) -> AppleScriptResult {
         let script = ConstructedAppleScript(
             application: application,
-            components: [.open, .activate, .endTell, .numbersMap],
+            components: [.open, .activate, .numbersMap, .endTell],
             variables: variables
         )
 
