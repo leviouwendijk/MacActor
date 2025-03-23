@@ -65,6 +65,7 @@ public enum GenericAppleScriptComponent: String {
     case exportCSV
     case displayDialog
     case numbersMap
+    case numbersCell
     
     public func resolve(for app: TargetApplication, using variables: AppleScriptVariables = .init()) -> String {
         switch self {
@@ -133,8 +134,29 @@ public enum GenericAppleScriptComponent: String {
                 display dialog result
             end tell
             """
+        case .numbersCell:
+            guard
+                let sheet = variables.additional["sheet"],
+                let table = variables.additional["table"],
+                let row = variables.additional["row"],
+                let column = variables.additional["column"],
+                let value = variables.additional["value"]
+            else {
+                return "// Missing one or more required values"
+            }
+            return """
+            tell application "\(app.rawValue)"
+                activate
+                tell document 1
+                    tell sheet \(sheet)
+                        tell table "\(table)"
+                            set the value of cell \(column) of row \(row) to "\(value)"
+                        end tell
+                    end tell
+                end tell
+            end tell
+            """
         }
-        
     }
 }
 
