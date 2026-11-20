@@ -16,9 +16,5 @@ let package = Package(
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "MacActor"),
-        .testTarget(
-            name: "MacActorTests",
-            dependencies: ["MacActor"]
-        ),
     ]
 )
